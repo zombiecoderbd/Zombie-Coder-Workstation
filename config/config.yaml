@@ -1,0 +1,156 @@
+# ZombieCoder Local AI - Main Configuration
+# Production-ready configuration
+
+# Server Configuration
+server:
+  host: "0.0.0.0"
+  port: 8000
+  debug: false
+  log_level: "INFO"
+  max_connections: 100
+  timeout: 30
+
+# Database Configuration
+database:
+  chroma:
+    path: "./data/chroma"
+    collection_name: "zombiecoder_knowledge"
+  redis:
+    host: "localhost"
+    port: 6379
+    db: 0
+    password: null
+  sqlite:
+    path: "./data/zombiecoder.db"
+    pool_size: 10
+
+# Agent Configuration
+agents:
+  registry_file: "./config/registry.yaml"
+  default_agent: "virtual_sir"
+  max_concurrent_agents: 5
+  agent_timeout: 60
+
+# Model Routing Configuration
+models:
+  routing:
+    strategy: "smart_fallback"
+    primary_provider: "openai"
+    fallback_providers: ["anthropic", "local"]
+  
+  providers:
+    openai:
+      api_key: "${OPENAI_API_KEY}"
+      base_url: "https://api.openai.com/v1"
+      models:
+        - "gpt-4"
+        - "gpt-3.5-turbo"
+      max_tokens: 4096
+      temperature: 0.7
+    
+    anthropic:
+      api_key: "${ANTHROPIC_API_KEY}"
+      base_url: "https://api.anthropic.com"
+      models:
+        - "claude-3-sonnet-20240229"
+        - "claude-3-haiku-20240307"
+      max_tokens: 4096
+      temperature: 0.7
+    
+    local:
+      base_url: "http://localhost:8080"
+      models:
+        - "llama-2-7b-chat"
+        - "qwen-7b-chat"
+      max_tokens: 2048
+      temperature: 0.7
+
+# RAG Configuration
+rag:
+  chunk_size: 1000
+  chunk_overlap: 200
+  max_context_length: 4000
+  similarity_threshold: 0.7
+  max_retrieved_docs: 5
+  embedding_model: "text-embedding-ada-002"
+
+# Validation Configuration
+validation:
+  input_validation:
+    max_length: 10000
+    allowed_formats: ["text", "markdown", "code"]
+    blocked_patterns: ["password", "secret", "token"]
+  
+  output_validation:
+    max_length: 5000
+    fact_check_enabled: true
+    similarity_threshold: 0.8
+    safety_rules_enabled: true
+
+# Tools Configuration
+tools:
+  enabled_tools:
+    - "file_reader"
+    - "file_writer"
+    - "code_analyzer"
+    - "web_search"
+    - "calculator"
+    - "terminal"
+  
+  restricted_tools:
+    - "system_modify"
+    - "network_access"
+  
+  tool_limits:
+    max_calls_per_session: 20
+    timeout_per_call: 30
+
+# Monitoring Configuration
+monitoring:
+  prometheus:
+    enabled: true
+    port: 9090
+    metrics_path: "/metrics"
+  
+  grafana:
+    enabled: true
+    port: 3001
+    dashboard_path: "./static/grafana"
+  
+  logging:
+    level: "INFO"
+    file_path: "./logs/zombiecoder.log"
+    max_file_size: "10MB"
+    backup_count: 5
+
+# Security Configuration
+security:
+  api_key_required: false
+  rate_limiting:
+    enabled: true
+    requests_per_minute: 60
+    burst_size: 10
+  
+  encryption:
+    enabled: true
+    algorithm: "AES-256-GCM"
+    key_rotation_days: 30
+
+# Cache Configuration
+cache:
+  redis:
+    enabled: true
+    ttl: 3600
+    max_memory: "256mb"
+  
+  local:
+    enabled: true
+    max_size: 1000
+    ttl: 1800
+
+# Development Configuration
+development:
+  hot_reload: true
+  debug_mode: false
+  mock_external_apis: false
+  enable_profiling: false

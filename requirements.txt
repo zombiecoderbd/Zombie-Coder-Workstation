@@ -1,0 +1,77 @@
+# ZombieCoder Local AI - Complete Production Dependencies
+# Agent Workstation Layer - "যেখানে কোড ও কথা বলে"
+
+# Core Framework
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+aiohttp>=3.9.0
+pyyaml>=6.0.1
+python-dotenv>=1.0.0
+
+# AI/ML Dependencies
+chromadb>=0.4.15
+sentence-transformers>=2.2.2
+transformers>=4.35.0
+
+# Database and Caching
+redis>=5.0.1
+redis[hiredis]>=5.0.1
+sqlalchemy>=2.0.23
+alembic>=1.12.1
+
+# Monitoring and Metrics
+prometheus-client>=0.19.0
+psutil>=5.9.6
+
+# Async Support
+asyncio-mqtt>=0.16.1
+websockets>=12.0
+aiofiles>=23.2.1
+
+# Security and Validation
+cryptography>=41.0.7
+
+# Development and Testing
+pytest>=7.4.3
+pytest-asyncio>=0.21.1
+black>=23.11.0
+flake8>=6.1.0
+
+# Additional Utilities
+click>=8.1.7
+rich>=13.7.0
+tqdm>=4.66.1
+requests>=2.31.0
+numpy>=1.24.3
+pandas>=2.0.3
+
+# Optional: OpenAI Support
+openai>=1.3.0
+
+# Optional: Anthropic Support
+anthropic>=0.7.0
+
+# Optional: Advanced NLP
+spacy>=3.7.2
+nltk>=3.8.1
+
+# Optional: Image Processing
+pillow>=10.1.0
+
+# Optional: Web Scraping
+beautifulsoup4>=4.12.2
+selenium>=4.15.0
+
+# Optional: Data Validation
+pydantic>=2.5.0
+marshmallow>=3.20.1
+
+# Optional: System Information
+distro
+
+# Performance and Profiling
+memory-profiler
+py-spy
+
+# WebSocket Client
+websocket-client>=1.7.0

@@ -1,0 +1,16 @@
+tools:
+  code_analyzer:
+    enabled: true
+
+  file_manager:
+    read: true
+    write: true
+    allowed_paths:
+      - "workspace/"
+
+  rag_retriever:
+    enabled: true
+    provider: "local"
+
+  shell_exec:
+    enabled: false   # নিরাপত্তার জন্য

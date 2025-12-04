@@ -1,0 +1,178 @@
+# ZombieCoder Agent Registry
+# Lists all available agents and their configurations
+
+# Production Agents
+agents:
+  virtual_sir:
+    display_name: "Virtual Sir"
+    description: "Educational teaching assistant for programming and concept learning"
+    category: "education"
+    status: "active"
+    version: "1.0.0"
+    
+    config_file: "./config/personality.yaml"
+    personality_section: "virtual_sir"
+    
+    capabilities:
+      - "teaching"
+      - "code_explanation"
+      - "concept_clarification"
+      - "step_by_step_guidance"
+      - "error_explanation"
+    
+    specializations:
+      - "programming_fundamentals"
+      - "algorithms"
+      - "data_structures"
+      - "best_practices"
+    
+    limitations:
+      - "no_file_writing"
+      - "no_terminal_access"
+      - "educational_content_only"
+    
+    routing:
+      preferred_models: ["gpt-4", "claude-3-sonnet"]
+      fallback_enabled: true
+      max_response_time: 30
+    
+    monitoring:
+      track_satisfaction: true
+      log_interactions: true
+      performance_metrics: true
+
+  coding_agent:
+    display_name: "Coding Agent"
+    description: "Professional development assistant for code generation and debugging"
+    category: "development"
+    status: "active"
+    version: "1.0.0"
+    
+    config_file: "./config/personality.yaml"
+    personality_section: "coding_agent"
+    
+    capabilities:
+      - "code_generation"
+      - "debugging"
+      - "code_review"
+      - "refactoring"
+      - "documentation"
+      - "file_operations"
+      - "terminal_commands"
+    
+    specializations:
+      - "web_development"
+      - "python"
+      - "javascript"
+      - "typescript"
+      - "system_architecture"
+    
+    limitations:
+      - "no_critical_system_modification"
+      - "no_admin_access"
+    
+    routing:
+      preferred_models: ["claude-3-sonnet", "gpt-4"]
+      fallback_enabled: true
+      max_response_time: 45
+    
+    monitoring:
+      track_code_quality: true
+      log_file_operations: true
+      performance_metrics: true
+
+# Future Agents (Placeholder for expansion)
+future_agents:
+  data_analyst:
+    display_name: "Data Analyst"
+    description: "AI assistant for data analysis and visualization"
+    category: "analytics"
+    status: "planned"
+    version: "0.0.1"
+    
+  devops_agent:
+    display_name: "DevOps Agent"
+    description: "Infrastructure and deployment automation assistant"
+    category: "infrastructure"
+    status: "planned"
+    version: "0.0.1"
+    
+  security_agent:
+    display_name: "Security Agent"
+    description: "Code security and vulnerability assessment"
+    category: "security"
+    status: "planned"
+    version: "0.0.1"
+
+# System Configuration
+registry:
+  version: "1.0.0"
+  last_updated: "2024-01-01"
+  auto_reload: true
+  validation_enabled: true
+  
+  agent_loading:
+    parallel_loading: true
+    timeout_seconds: 30
+    retry_attempts: 3
+    
+  health_check:
+    enabled: true
+    interval_seconds: 60
+    failure_threshold: 3
+
+# Provider Configuration
+providers:
+  local:
+    base_url: "http://127.0.0.1:8157"
+    models:
+      - "zombiecoder-mini"
+      - "zombiecoder-medium"
+
+routing:
+  virtual_sir:
+    provider: "local"
+    model: "zombiecoder-mini"
+
+  coding_agent:
+    provider: "local"
+    model: "zombiecoder-medium"
+
+# Routing Rules
+routing_rules:
+  default_agent: "virtual_sir"
+  
+  intent_mapping:
+    teaching_keywords:
+      - "explain"
+      - "teach"
+      - "learn"
+      - "tutorial"
+      - "how to"
+      - "concept"
+      - "fundamental"
+      target_agent: "virtual_sir"
+    
+    coding_keywords:
+      - "code"
+      - "debug"
+      - "implement"
+      - "fix"
+      - "develop"
+      - "programming"
+      - "function"
+      target_agent: "coding_agent"
+    
+    analysis_keywords:
+      - "analyze"
+      - "review"
+      - "optimize"
+      - "refactor"
+      target_agent: "coding_agent"
+
+# Performance Settings
+performance:
+  max_concurrent_sessions: 10
+  session_timeout: 1800
+  memory_limit_per_agent: "512MB"
+  cpu_limit_per_agent: 50

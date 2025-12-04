@@ -1,0 +1,7 @@
+memory:
+  enabled: true
+  storage: "sqlite"
+  path: "data/memory.db"
+  max_context: 5
+  language: "bn"
+  long_term_notes: true
